@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Articles</title>
+    <link rel="stylesheet" href="search-egnine-implemention/app/static/css/styles.css">
+</head>
+
+<body>
+    <label class="search">
+        <div class="one">
+            <div class="two">
+                <div class="three">
+                    <input type="search" class="four" placeholder="news" />
+                </div>
+                <div class="stick"></div>
+            </div>
+        </div>
+    </label>
+    
+
+    <script>
+        const articles = [
+            { title: "Article 1", description: "Description 1", url: "http://example.com/1" },
+            { title: "Article 2", description: "Description 2", url: "http://example.com/2" },
+            // Add more articles as needed
+        ];
+
+        document.querySelector('.four').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                search(articles);
+            }
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>

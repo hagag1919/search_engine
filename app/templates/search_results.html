@@ -1,0 +1,27 @@
+<!-- templates/search_results.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <style>
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <h1>Search Results for "{{ query }}"</h1>
+    <a href="/">Back to Home</a>
+    <ul>
+        {% for article in articles %}
+            <li>
+                <h2>{{ article.title | safe }}</h2>
+                <p>{{ article.description | safe }}</p>
+                <a href="{{ article.url }}">Read more</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
