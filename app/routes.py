@@ -23,4 +23,4 @@ def search():
         articles = search_engine.search(query)
     else:
         articles = []
-    return render_template('search_results.html', articles=articles, query=query)
+    return render_template('index.html', articles=articles, query=query)

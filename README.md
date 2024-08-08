@@ -3,6 +3,27 @@
 
 This repository provides a simple implementation of a search engine using Flask and SQLAlchemy. It demonstrates the basic concepts of indexing, searching, and highlighting matched text in search results.
 
+# Search Terminology
+
+## Index
+An index is a data structure that improves the speed of data retrieval operations on a database table. In the context of search engines, an index is created to allow quick lookup of documents that contain specific words or phrases. It maps terms to the documents in which they appear.
+
+## Documents
+Documents are the basic units of information that are indexed and searched. In a search engine, a document can be any piece of text, such as a web page, a PDF file, or a database record. Each document is assigned a unique identifier and is processed to extract searchable content.
+
+## Tokenization
+Tokenization is the process of breaking down text into smaller units called tokens, typically words or phrases. This is a crucial step in text processing for search engines, as it allows the system to analyze and index the content effectively. For example, the sentence "The quick brown fox" would be tokenized into ["The", "quick", "brown", "fox"].
+
+## Edge N-Grams
+Edge n-grams are a type of n-gram that captures the beginning part of a word. They are used to improve search performance by allowing partial matches. For example, the word "search" can be broken down into edge n-grams like ["s", "se", "sea", "sear", "searc", "search"]. This helps in matching queries like "sea" or "sear" to the word "search".
+
+## Segments
+Segments refer to the individual parts of an index. In large-scale search engines, the index is often divided into multiple segments to manage and update the data more efficiently. Each segment is a self-contained index that can be searched independently. When a search query is executed, the results from all segments are combined to produce the final output.
+
+## Query Parser
+A query parser is a component of a search engine that interprets and processes user queries. It translates the user's search input into a format that the search engine can understand and execute. The query parser handles various aspects such as parsing keywords, handling operators (AND, OR, NOT), and managing special characters or syntax.
+
+
 # News Search Engine
 
 This repository contains a simple news search engine built with Flask and SQLAlchemy. The search engine allows users to search for news articles and highlights the matched text in the search results.
@@ -158,61 +179,25 @@ Ensure you have a configuration file (e.g., `config.py`) with the necessary sett
     - `index.html`
 
         ```html
-        <!DOCTYPE html>
+        !DOCTYPE html>
         <html lang="en">
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Data</title>
+            <title>Search Engine</title>
+            <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
         </head>
         <body>
-            <h1>Data</h1>
-            <form action="/search" method="get">
-                <input type="text" name="q" placeholder="Search...">
-                <button type="submit">Search</button>
-            </form>
-            <ul>
-                {% for item in data %}
-                    <li>
-                        <h2>{{ item.title }}</h2>
-                        <p>{{ item.description }}</p>
-                        <a href="{{ item.url }}">Read more</a>
-                    </li>
-                {% endfor %}
-            </ul>
+            <div class="search-container">
+                <input type="text" id="search-bar" placeholder="Search">
+                <button id="search-btn">Search</button>
+            </div>
+            <ul id="results-list"></ul>
+            <script src="{{ url_for('static', filename='js/script.js') }}"></script>
         </body>
         </html>
         ```
 
-    - `search_results.html`
-
-        ```html
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Search Results</title>
-            <style>
-                .highlight {
-                    background-color: yellow;
-                }
-            </style>
-        </head>
-        <body>
-            <h1>Search Results for "{{ query }}"</h1>
-            <a href="/">Back to Home</a>
-            <ul>
-                {% for item in data %}
-                    <li>
-                        <h2>{{ item.title | safe }}</h2>
-                        <p>{{ item.description | safe }}</p>
-                        <a href="{{ item.url }}">Read more</a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </body>
-        </html>
-        ```
+   
 
 By following these steps, you can adapt this search engine to work with any type of data.
